@@ -7,27 +7,27 @@ import "./styles.css";
 
 const Form = (props) => {
 
-    const [selectedLocation, setSelectedLocation] = useState([]);
     const [cityMode, setCityMode] = useState(false);
-    const [placeName, setPlaceName] = useState("");
-    const [latitude, setLatitude] = useState();
-    const [longitude, setLongitude] = useState();
     const [polygonIndex, setPolygonIndex] = useState(0);
 
     const methods = useForm();
     const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
-        setLatitude(data.latitude);
-        setLongitude(data.longitude);
-        // setPolygonIndex(Math.random().toString(36).substr(2, 5))
-        setPolygonIndex(polygonIndex + 1)
-        props.onAddLocation([...props.coordinates, [data.latitude, data.longitude]])
+        {
+            cityMode ?
+                props.onAddPlaceName(value)
+                :
+                setLatitude(data.latitude);
+            setLongitude(data.longitude);
+            // setPolygonIndex(Math.random().toString(36).substr(2, 5))
+            setPolygonIndex(polygonIndex + 1)
+            props.onAddCoords(data.latitude, data.longitude)
+        }
     };
 
     const handleInputMode = (value) => {
         console.log('cityMode: ', value);
-        setPlaceName(placeName)
         setCityMode(!value);
     }
 
@@ -59,7 +59,7 @@ const Form = (props) => {
                 {cityMode ?
                     <div>
                         <label htmlFor="placeName">Place Name</label>
-                        <input {...register("placeName")} placeholder={`${placeName ? placeName : 'Place Name'}`} /* defaultValue={placeName} */ />
+                        <input {...register("placeName")} placeholder={`${props.placeName ? props.placeName : 'Place Name'}`} /* defaultValue={placeName} */ />
                     </div>
                     :
                     <div>

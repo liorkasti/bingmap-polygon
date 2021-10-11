@@ -26,7 +26,7 @@ _______________________________________________
 
 | Number | Description |
 | ------ | ------ |
-| 1 | Overcome 
+| 1 | Finish search by a place name
 | 2 | Add redux or context
 | 3 | Add testing
 

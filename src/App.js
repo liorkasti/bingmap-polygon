@@ -6,73 +6,81 @@ import Form from "./components/Form/Form"
 
 const App = () => {
 
-  const homeLocationPoly = [{
-    "center": [35.321542, -80.757],
-    "radius": 5,
-    "points": 3,
-    "option": { fillColor: "#ffdae8b5", strokeThickness: 2, strokeColor: "#bf1650" }
-  }, {
-    "center": [32.321254, -85.75724],
-    "radius": 5,
-    "points": 3,
-    "option": { fillColor: "#ffdae8b5", strokeThickness: 2, strokeColor: "#bf1650" }
-  }, {
-    "center": [27.321, -80.757],
-    "radius": 5,
-    "points": 3,
-    "option": { fillColor: "#ffdae8b5", strokeThickness: 2, strokeColor: "#bf1650" }
-  }]
-
-  const [coordinates, setCoordinates] = useState([]);
   const [locations, setLocations] = useState(homeLocationPoly);
-  const [markedLocation, setMarkedLocation] = useState([]);
+  const [placeName, setPlaceName] = useState();
+
   useEffect(() => {
     console.log('locations: ', locations)
-    setLocations(locations);
   }, [locations])
 
-  const appendLocationHandler = async (locationNode) => {
-    setCoordinates(locationNode);
-    locations.push({
-      center: locationNode,
-      radius: 5, points: 3,
-      option: { fillColor: "#ffdae8", strokeThickness: 2 }
-    })
+  useEffect(() => {
+    console.log('placeName: ', placeName)
+
+  }, [placeName])
+
+  const appendPlacNameHandler = async (value) => {
+    setPlaceName(value)
   }
 
-  const AddPushPinOnClick = (marked) => {
-    setMarkedLocation(marked)
-    // setLocations([...locations, [markedLocation.latitude, markedLocation.longitude]])
+  const appendCoordsHandler = async (marked) => {
+    // console.log('locationNode: ', marked)
     locations.push({
-      center: [markedLocation.latitude, markedLocation.longitude],
-      radius: 5, points: 3,
+      center: [marked.latitude, marked.longitude],
+      radius: 1, points: 6,
       option: { fillColor: "#ffdae8b5", strokeThickness: 2, strokeColor: "#bf1650" }
     })
-    console.log('location: ', marked)
-    console.log('locations: ', locations)
+    setLocations(locations);
   }
-
 
   return (
     <div className="container">
       <Form className="form"
-        coordinates={coordinates}
-        onAddLocation={appendLocationHandler}
+        onAddPlaceName={(value) => appendPlacNameHandler(value)}
+        onAddCoords={appendCoordsHandler}
+        placeName={placeName}
       />
       <ReactBingmaps
         bingmapKey="Au_s6stObqYe5mrDRVJvSf1lJ3bfuiHC1V_xKVGlq1vyHFuREUOuay9fesgsSfTb"
-        // center={[32.090, 34.801]}
-        center={[35.321, -80.757]}
+        center={[32.090, 34.801]}
         height="80%"
         width="60%"
-        zoom={13.5}
+        zoom={12}
         getLocation={
-          { addHandler: "click", callback: AddPushPinOnClick }
+          { addHandler: "click", callback: appendCoordsHandler }
         }
         regularPolygons={locations}
+
+        boundary={{
+          "search": { placeName },
+          "option": {
+            entityType: 'PopulatedPlace'
+          },
+          "polygonStyle": {
+            fillColor: 'rgba(161,224,255,0.4)',
+            strokeColor: '#a495b2',
+            strokeThickness: 2
+          }
+        }}
+
       />
     </div>
   );
 }
+const homeLocationPoly = [{
+  "center": [32.090, 34.801],
+  "radius": 1,
+  "points": 5,
+  "option": { fillColor: "#ffdae8b5", strokeThickness: 2, strokeColor: "#bf1650" }
+}, {
+  "center": [32.090, 34.601],
+  "radius": 1,
+  "points": 4,
+  "option": { fillColor: "#ffdae8b5", strokeThickness: 2, strokeColor: "#bf1650" }
+}, {
+  "center": [32.390, 34.801],
+  "radius": 1,
+  "points": 6,
+  "option": { fillColor: "#ffdae8b5", strokeThickness: 2, strokeColor: "#bf1650" }
+}]
 
 export default App;
