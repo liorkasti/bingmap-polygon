@@ -7,7 +7,7 @@ A react app using google maps to displays a map with user’s markers which are 
     Clone the project
     ```sh
     # clone the project to your local computer
-    git clone 
+    git clone https://github.com/liorkasti/bingmap-polygon
     ```
 1.  
     Install the application dependencies (in another terminal)
@@ -26,7 +26,8 @@ _______________________________________________
 
 | Number | Description |
 | ------ | ------ |
-| 1 | Add testing
-| 2 | Enhance..
+| 1 | Overcome 
+| 2 | Add redux or context
+| 3 | Add testing
 
 Enjoy! thank you.

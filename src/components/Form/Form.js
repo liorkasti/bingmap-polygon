@@ -6,10 +6,6 @@ import Test from "./Test";
 import "./styles.css";
 
 const Form = (props) => {
-    useEffect(() => {
-        console.log(props)
-        console.log(selectedLocation)
-    }, [])
 
     const [selectedLocation, setSelectedLocation] = useState([]);
     const [cityMode, setCityMode] = useState(false);
@@ -22,19 +18,11 @@ const Form = (props) => {
     const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
-        // alert(JSON.stringify(data));
-        // console.log('data: ' + JSON.stringify(data));
         setLatitude(data.latitude);
         setLongitude(data.longitude);
         // setPolygonIndex(Math.random().toString(36).substr(2, 5))
         setPolygonIndex(polygonIndex + 1)
-        props.onAddLocation([...props.coordinates, {
-            polygonIndex: polygonIndex,
-            latitude: latitude || 32.321,
-            longitude: longitude || -80.757
-        }])
-        // console.log('register: ' + register);
-        // .preventDefault()
+        props.onAddLocation([...props.coordinates, [data.latitude, data.longitude]])
     };
 
     const handleInputMode = (value) => {
@@ -51,7 +39,6 @@ const Form = (props) => {
                     <input
                         type="radio"
                         {...register("cityMode")}
-                        defaultValue="yes"
                         value={cityMode}
                         checked={!cityMode}
                         onClick={() => handleInputMode(cityMode)}

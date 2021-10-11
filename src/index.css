@@ -13,6 +13,7 @@ code {
 }
 
 .container {
+  height         : 500px;
   display        : flex;
   flex-direction : row;
   align-items    : center;
@@ -20,16 +21,9 @@ code {
   padding        : 0.5rem 1rem;
 }
 
-.form {
-  /* width          : 40%;
-  align-items    : center;
-  justify-content: space-between;
-  color          : white;
-  padding        : 0.5rem 1rem; */
-}
-
 .map {
   width      : 60%;
+  height     : 500px;
   align-items: center;
   padding    : 0.5rem 1rem;
 }

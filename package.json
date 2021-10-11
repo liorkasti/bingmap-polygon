@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bingmaps-react": "^1.1.1",
     "react": "^17.0.2",
+    "react-bingmaps": "^3.6.1",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.17.2",
     "react-scripts": "4.0.3",
@@ -15,12 +15,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [

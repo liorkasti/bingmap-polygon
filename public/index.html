@@ -1,50 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
-  <meta name="description" content="Web site created using create-react-app" />
-  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  <script type='text/javascript'>
-    function GetMap() {
-      var map = new Microsoft.Maps.Map('#myMap', {});
-
-      var center = map.getCenter();
-
-      //Create array of locations to form a ring.
-      var exteriorRing = [
-        center,
-        new Microsoft.Maps.Location(center.latitude - 0.5, center.longitude - 1),
-        new Microsoft.Maps.Location(center.latitude - 0.5, center.longitude + 1),
-        center
-      ];
-
-      //Create a polygon
-      var polygon = new Microsoft.Maps.Polygon(exteriorRing, {
-        fillColor: 'rgba(0, 255, 0, 0.5)',
-        strokeColor: 'red',
-        strokeThickness: 2
-      });
-
-      //Add the polygon to map    
-      map.entities.push(polygon);
-    }
-  </script>
-
-  <script type='text/javascript'
-    src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=Au_s6stObqYe5mrDRVJvSf1lJ3bfuiHC1V_xKVGlq1vyHFuREUOuay9fesgsSfTb'
-    async defer></script>
-  <title>BingMap Polygon</title>
-</head>
-
-<body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
-  <div id="myMap" style='position:relative;width:60%;height:500px;'></div>
-</body>
-
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <title>Bing Map Polygon</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
 </html>
